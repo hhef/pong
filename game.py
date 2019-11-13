@@ -11,6 +11,7 @@ window = turtle.Screen()
 window.title("Pong")
 window.bgcolor("orange")
 window.setup(width=1000, height=800)
+window.tracer(0)
 
 # Playing field
 
@@ -48,6 +49,7 @@ ball.speed(0)
 ball.shape("circle")
 ball.penup()
 ball.goto(0, 0)
+ball_move = 0.2
 
 # Score
 score = turtle.Turtle()
@@ -94,3 +96,5 @@ window.onkeypress(right_paddle_move_down, "Down")
 
 while True:
     window.update()
+    ball.setx(ball.xcor() + ball_move)
+    ball.sety(ball.ycor() + ball_move)
