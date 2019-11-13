@@ -1,5 +1,11 @@
 import turtle
 
+boarder_x = 420
+boarder_y = 250
+score_a = 0
+score_b = 0
+
+
 # Screen
 window = turtle.Screen()
 window.title("Pong")
@@ -7,8 +13,6 @@ window.bgcolor("orange")
 window.setup(width=1000, height=800)
 
 # Playing field
-boarder_x = 420
-boarder_y = 250
 
 playing_field = turtle.Turtle()
 playing_field.hideturtle()
@@ -44,5 +48,16 @@ ball.speed(0)
 ball.shape("circle")
 ball.penup()
 ball.goto(0, 0)
+
+# Score
+score = turtle.Turtle()
+score.speed(0)
+score.penup()
+score.color("black")
+score.hideturtle()
+score.goto(-boarder_x + 100, boarder_y + 20)
+score.write(f"{score_a}", align="center", font=("Arial", 50, "bold"))
+score.goto(boarder_x - 100, boarder_y + 20)
+score.write(f"{score_b}", align="center", font=("Arial", 50, "bold"))
 
 window.mainloop()
