@@ -4,7 +4,7 @@ boarder_x = 420
 boarder_y = 250
 score_a = 0
 score_b = 0
-
+paddle_move = 4
 
 # Screen
 window = turtle.Screen()
@@ -60,4 +60,37 @@ score.write(f"{score_a}", align="center", font=("Arial", 50, "bold"))
 score.goto(boarder_x - 100, boarder_y + 20)
 score.write(f"{score_b}", align="center", font=("Arial", 50, "bold"))
 
-window.mainloop()
+
+# Paddles move up and down
+def left_paddle_move_up():
+    move = left_paddle.ycor()
+    move += paddle_move
+    left_paddle.sety(move)
+
+
+def left_paddle_move_down():
+    move = left_paddle.ycor()
+    move -= paddle_move
+    left_paddle.sety(move)
+
+
+def right_paddle_move_up():
+    move = right_paddle.ycor()
+    move += paddle_move
+    right_paddle.sety(move)
+
+
+def right_paddle_move_down():
+    move = right_paddle.ycor()
+    move -= paddle_move
+    right_paddle.sety(move)
+
+
+window.listen()
+window.onkeypress(left_paddle_move_up, "w")
+window.onkeypress(left_paddle_move_down, "s")
+window.onkeypress(right_paddle_move_up, "Up")
+window.onkeypress(right_paddle_move_down, "Down")
+
+while True:
+    window.update()
