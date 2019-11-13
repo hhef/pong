@@ -2,9 +2,17 @@ import turtle
 
 boarder_x = 420
 boarder_y = 250
+
 score_a = 0
 score_b = 0
+
 paddle_move = 4
+
+ball_move_x = 0.2
+ball_move_y = 0.2
+
+paddle_height = 10
+paddle_width = 10
 
 # Screen
 window = turtle.Screen()
@@ -12,6 +20,7 @@ window.title("Pong")
 window.bgcolor("orange")
 window.setup(width=1000, height=800)
 window.tracer(0)
+
 
 # Playing field
 
@@ -27,10 +36,14 @@ playing_field.goto(-boarder_x, -boarder_y)
 playing_field.goto(-boarder_x, boarder_y)
 playing_field.goto(boarder_x, boarder_y)
 
+# Paddles shape
+window.register_shape("paddle", ((-paddle_width, -paddle_height), (-paddle_width, paddle_height),
+                                 (paddle_width, paddle_height), (paddle_width, -paddle_height)))
+
 # Left Paddle
 left_paddle = turtle.Turtle()
 left_paddle.speed(0)
-left_paddle.shape("square")
+left_paddle.shape("paddle")
 left_paddle.shapesize(stretch_wid=5, stretch_len=1)
 left_paddle.penup()
 left_paddle.goto(-boarder_x + 15, 0)
@@ -38,7 +51,7 @@ left_paddle.goto(-boarder_x + 15, 0)
 # Right Paddle
 right_paddle = turtle.Turtle()
 right_paddle.speed(0)
-right_paddle.shape("square")
+right_paddle.shape("paddle")
 right_paddle.shapesize(stretch_wid=5, stretch_len=1)
 right_paddle.penup()
 right_paddle.goto(boarder_x + -15, 0)
@@ -49,8 +62,6 @@ ball.speed(0)
 ball.shape("circle")
 ball.penup()
 ball.goto(0, 0)
-ball_move_x = 0.2
-ball_move_y = 0.2
 
 # Score
 score = turtle.Turtle()
@@ -105,6 +116,7 @@ while True:
     ball.setx(ball.xcor() + ball_move_x)
     ball.sety(ball.ycor() + ball_move_y)
 
+    # Ball hits top and bot boarders + misses paddles
     if ball.ycor() > boarder_y - 10:
         ball_move_y *= -1
     elif ball.ycor() < -boarder_y + 10:
@@ -119,3 +131,5 @@ while True:
         ball_move_x *= -1
         score_b += 1
         write_score()
+
+    # Ball hits paddles
