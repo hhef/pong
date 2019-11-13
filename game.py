@@ -49,7 +49,8 @@ ball.speed(0)
 ball.shape("circle")
 ball.penup()
 ball.goto(0, 0)
-ball_move = 0.2
+ball_move_x = 0.2
+ball_move_y = 0.2
 
 # Score
 score = turtle.Turtle()
@@ -96,5 +97,14 @@ window.onkeypress(right_paddle_move_down, "Down")
 
 while True:
     window.update()
-    ball.setx(ball.xcor() + ball_move)
-    ball.sety(ball.ycor() + ball_move)
+    ball.setx(ball.xcor() + ball_move_x)
+    ball.sety(ball.ycor() + ball_move_y)
+
+    if ball.ycor() > boarder_y:
+        ball_move_y *= -1
+    elif ball.ycor() < -boarder_y:
+        ball_move_y *= -1
+    elif ball.xcor() > boarder_x:
+        ball.goto(0, 0)
+    elif ball.xcor() < - boarder_x:
+        ball.goto(0, 0)
