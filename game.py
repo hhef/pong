@@ -58,10 +58,14 @@ score.speed(0)
 score.penup()
 score.color("black")
 score.hideturtle()
-score.goto(-boarder_x + 100, boarder_y + 20)
-score.write(f"{score_a}", align="center", font=("Arial", 50, "bold"))
-score.goto(boarder_x - 100, boarder_y + 20)
-score.write(f"{score_b}", align="center", font=("Arial", 50, "bold"))
+
+
+def write_score():
+    score.clear()
+    score.goto(-boarder_x + 100, boarder_y + 20)
+    score.write(f"{score_a}", align="center", font=("Arial", 50, "bold"))
+    score.goto(boarder_x - 100, boarder_y + 20)
+    score.write(f"{score_b}", align="center", font=("Arial", 50, "bold"))
 
 
 # Paddles move up and down
@@ -95,6 +99,7 @@ window.onkeypress(left_paddle_move_down, "s")
 window.onkeypress(right_paddle_move_up, "Up")
 window.onkeypress(right_paddle_move_down, "Down")
 
+write_score()
 while True:
     window.update()
     ball.setx(ball.xcor() + ball_move_x)
@@ -106,5 +111,9 @@ while True:
         ball_move_y *= -1
     elif ball.xcor() > boarder_x:
         ball.goto(0, 0)
+        score_a += 1
+        write_score()
     elif ball.xcor() < - boarder_x:
         ball.goto(0, 0)
+        score_b += 1
+        write_score()
