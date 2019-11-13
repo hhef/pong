@@ -105,15 +105,17 @@ while True:
     ball.setx(ball.xcor() + ball_move_x)
     ball.sety(ball.ycor() + ball_move_y)
 
-    if ball.ycor() > boarder_y:
+    if ball.ycor() > boarder_y - 10:
         ball_move_y *= -1
-    elif ball.ycor() < -boarder_y:
+    elif ball.ycor() < -boarder_y + 10:
         ball_move_y *= -1
-    elif ball.xcor() > boarder_x:
+    elif ball.xcor() > boarder_x - 10:
         ball.goto(0, 0)
+        ball_move_x *= -1
         score_a += 1
         write_score()
-    elif ball.xcor() < - boarder_x:
+    elif ball.xcor() < - boarder_x + 10:
         ball.goto(0, 0)
+        ball_move_x *= -1
         score_b += 1
         write_score()
