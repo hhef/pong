@@ -21,9 +21,7 @@ window.bgcolor("orange")
 window.setup(width=1000, height=800)
 window.tracer(0)
 
-
 # Playing field
-
 playing_field = turtle.Turtle()
 playing_field.hideturtle()
 playing_field.color("black")
@@ -36,14 +34,10 @@ playing_field.goto(-boarder_x, -boarder_y)
 playing_field.goto(-boarder_x, boarder_y)
 playing_field.goto(boarder_x, boarder_y)
 
-# Paddles shape
-window.register_shape("paddle", ((-paddle_width, -paddle_height), (-paddle_width, paddle_height),
-                                 (paddle_width, paddle_height), (paddle_width, -paddle_height)))
-
 # Left Paddle
 left_paddle = turtle.Turtle()
 left_paddle.speed(0)
-left_paddle.shape("paddle")
+left_paddle.shape("square")
 left_paddle.shapesize(stretch_wid=5, stretch_len=1)
 left_paddle.penup()
 left_paddle.goto(-boarder_x + 15, 0)
@@ -51,7 +45,7 @@ left_paddle.goto(-boarder_x + 15, 0)
 # Right Paddle
 right_paddle = turtle.Turtle()
 right_paddle.speed(0)
-right_paddle.shape("paddle")
+right_paddle.shape("square")
 right_paddle.shapesize(stretch_wid=5, stretch_len=1)
 right_paddle.penup()
 right_paddle.goto(boarder_x + -15, 0)
@@ -133,3 +127,9 @@ while True:
         write_score()
 
     # Ball hits paddles
+    if ball.xcor() < -385 and left_paddle.ycor() + 50 > ball.ycor() > left_paddle.ycor() - 50:
+        ball.setx(-385)
+        ball_move_x *= -1
+    elif ball.xcor() > 385 and right_paddle.ycor() + 50 > ball.ycor() > right_paddle.ycor() - 50:
+        ball.setx(385)
+        ball_move_x *= -1
