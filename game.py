@@ -99,10 +99,10 @@ def right_paddle_move_down():
 
 
 window.listen()
-window.onkeypress(left_paddle_move_up, "w")
-window.onkeypress(left_paddle_move_down, "s")
-window.onkeypress(right_paddle_move_up, "Up")
-window.onkeypress(right_paddle_move_down, "Down")
+window.onkeyrelease(left_paddle_move_up, "w")
+window.onkeyrelease(left_paddle_move_down, "s")
+window.onkeyrelease(right_paddle_move_up, "Up")
+window.onkeyrelease(right_paddle_move_down, "Down")
 
 write_score()
 while True:
@@ -133,3 +133,13 @@ while True:
     elif ball.xcor() > 385 and right_paddle.ycor() + 50 > ball.ycor() > right_paddle.ycor() - 50:
         ball.setx(385)
         ball_move_x *= -1
+
+    # Paddles hit boarder
+    if left_paddle.ycor() + 50 > boarder_y:
+        left_paddle.sety(boarder_y - 50)
+    elif right_paddle.ycor() + 50 > boarder_y:
+        right_paddle.sety(boarder_y - 50)
+    elif left_paddle.ycor() - 50 < - boarder_y:
+        left_paddle.sety(-boarder_y + 50)
+    elif right_paddle.ycor() - 50 < - boarder_y:
+        right_paddle.sety(-boarder_y + 50)
