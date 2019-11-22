@@ -8,5 +8,12 @@ Game made with turtle module
 * Left Paddle "W" - up, "S" - down
 * Right Paddle "UP" - up, "DOWN" - down
 ### Game settings
-* To increase paddle speed change: paddle_move
-* To increase ball speed change: ball_move_x and ball_move_y 
+* To change paddle speed change: paddle_move
+* To change ball speed change: ball_move_x and ball_move_y
+
+## Setup
+For linux make sure to install:
+```
+sudo apt-get install python3-tk
+```
+
