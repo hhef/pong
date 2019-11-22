@@ -16,4 +16,6 @@ For linux make sure to install:
 ```
 sudo apt-get install python3-tk
 ```
+## Contact
+Created by [@hef](https://twitter.com/hef4rl) - feel free to contact me!
 
